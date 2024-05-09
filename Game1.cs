@@ -32,7 +32,9 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
         player = new Player();
-        player.PlayerInit(Content.Load<Texture2D>("Stay"), Vector2.Zero);
+        Texture2D playerTexture = Content.Load<Texture2D>("Stay");
+
+        player.PlayerInit(playerTexture, Vector2.Zero);
 
         ground = new Ground();
         Texture2D ground_texture = Content.Load<Texture2D>("ground"); 
@@ -63,17 +65,23 @@ public class Game1 : Game
         base.Update(gameTime);
     }
 
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        // TODO: Add your drawing code here
-        _spriteBatch.Begin();
-        _spriteBatch.Draw(ground.texture, ground.position, Color.White);
-        
-        _spriteBatch.Draw(player.texture, player.position, Color.White);
-        _spriteBatch.End();
-
-        base.Draw(gameTime);
+    protected override void Draw(GameTime gameTime) 
+    { 
+        GraphicsDevice.Clear(Color.CornflowerBlue); 
+ 
+        // TODO: Add your drawing code here 
+        _spriteBatch.Begin(); 
+        _spriteBatch.Draw(ground.texture, ground.position , Color.White); 
+ 
+        for(int g = 0; g <= 10 ; g++ ) 
+        { 
+            Vector2 newPosi = new Vector2(); 
+            newPosi.X =  ground.position.X + 30 ; 
+            _spriteBatch.Draw(ground.texture, newPosi , Color.White); 
+ 
+        }     
+        _spriteBatch.Draw(player.texture, player.position, Color.White); 
+        _spriteBatch.End(); 
+        base.Draw(gameTime); 
     }
 }
