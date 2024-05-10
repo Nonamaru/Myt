@@ -4,9 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/home/ffs/SSUSI/monogame/MyGame/Content/ball.png</File>
-    <File>/home/ffs/SSUSI/monogame/MyGame/Content/ground.png</File>
-    <File>/home/ffs/SSUSI/monogame/MyGame/Content/Stay.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/ball.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/ground.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/Stay.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

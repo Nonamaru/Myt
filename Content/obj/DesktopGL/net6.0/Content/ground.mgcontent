@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/home/ffs/SSUSI/monogame/MyGame/Content/ground.png</SourceFile>
-  <SourceTime>2024-05-09T00:51:00.7882904+05:00</SourceTime>
-  <DestFile>/home/ffs/SSUSI/monogame/MyGame/Content/bin/DesktopGL/Content/ground.xnb</DestFile>
-  <DestTime>2024-05-09T00:52:29.7101378+05:00</DestTime>
+  <SourceFile>D:/MyGames/MyTFelix/Myt/Content/ground.png</SourceFile>
+  <SourceTime>2024-05-10T21:41:42.6008191+05:00</SourceTime>
+  <DestFile>D:/MyGames/MyTFelix/Myt/Content/bin/DesktopGL/Content/ground.xnb</DestFile>
+  <DestTime>2024-05-10T21:43:25.2594677+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
