@@ -7,7 +7,6 @@
 
 
 */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,39 +25,50 @@ namespace MyGame
     {
         List<MagickCicle> magickCicles;
         private char[] Buff = {' ' , ' ' , ' '};
+        private String BuffString = "";
         public Skills()    
         {
-
+            magickCicles = new List<MagickCicle>();
         }
-    
-        public char[] getBuffer()
+        public void addBuffer(MagickCicle magick)
         {
-            return Buff;
-        }
-
-        public void addBuffer(char character)
-        {
-            if(Buff.Length < 3)
+            int counter = 0;
+            char[] bufferChar = BuffString.ToCharArray();
+            BuffString += magick.character; 
+            if(BuffString.Length <= 3)
             {
-                for(int g = 0; g < 3 ; g++)
-                {
-                    if(Buff[g] == ' ')
-                    {
-                        Buff[g] = character;
-                        break;
-                    }
-                }
+                magickCicles.Add(magick);
             }
             else
             {
-                Buff[0] = character;
-                for(int g = 1; g < 3 ; g++)
-                {
-                    Buff[g + 1] = Buff[g];
-                }
+                //magickCicles.RemoveAt(2);
             }
+            Console.Write(counter);
+        }
+        public void addBufferMagick(MagickCicle magick)
+        {
             
         }
+        public void Press(MagickCicle magick)
+        {
+            //magickCicles.Add(magick);
+            this.addBuffer(magick);
+        } 
+
+        public virtual void Draw(SpriteBatch spriteBatch , Vector2 posithion)
+        {
+            foreach(var sprite in magickCicles )
+            {
+                spriteBatch.Draw(sprite.texture ,  new Rectangle((int)posithion.X - (int)sprite.posithion.X , (int)posithion.Y - (int)sprite.posithion.Y , 30 , 30),new Rectangle(46, 0, 20 , 20), Color.White);
+            }
+        }
+
+        public void Update()
+        {
+
+        }
+
+
         public void sendSkill()
         {
 
@@ -66,24 +76,10 @@ namespace MyGame
         public void getSkill()
         {
 
-        } 
-
-        public void Press(MagickCicle magick)
+        }
+        public char[] getBuffer()
         {
-            this.addBuffer(magick.character);
-            magickCicles.Add(magick);
+        return Buff;
         } 
-
-        public virtual void Draw(SpriteBatch spriteBatch , bool flip)
-        {
-            // spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
-            // foreach(var sprite in magickCicles)
-            // {   
-            //     //spriteBatch.Draw(texture , Rect, Color.White);
-            //     //spriteBatch.Draw(sprite.texture , new Vector2(100 , 100), Color.White);
-            // }
-        }     
     }
-
-
 }

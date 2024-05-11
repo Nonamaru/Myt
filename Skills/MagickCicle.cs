@@ -15,6 +15,8 @@ namespace MyGame
     class MagickCicle : Sprite
     {
         public char character ;
+        
+        public Vector2 posithion;
         public MagickCicle(Texture2D texture , Vector2 position , char character):base(texture, position)
         {
             this.texture  = texture;
