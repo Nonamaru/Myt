@@ -8,119 +8,81 @@
         },
         "two":{
             "xx": 0.6,
-            "xy": 0.6,
-            "xb": 0.6,
-            "xa": 0.6,
-
-            "yx": 0.6,
             "yy": 0.6,
-            "yb": 0.6,
-            "ya": 0.6,
-
-            "bx": 0.6,
-            "by": 0.6,
             "bb": 0.6,
-            "ba": 0.6,
+            "aa": 0.6,
 
-            "ax": 0.6,
-            "ay": 0.6,
-            "ab": 0.6,
-            "aa": 0.6
+            "xa": "IceRay  0.6",
+            "yb": "LavaRay 0.6",
+
+            "xy": "y 0.3",
+            "xb": "x 0.3",
+            "ya": "a 0.3",
+            "ba": "b 0.3"
         },
         "three":{
             "xxx": 1,
-            "xyx": 1,
-            "xxy": 1,
-            "xbx": 1,
-            "xxb": 1,
-            "xax": 1,
-            "xxa": 1,
-
-            "yxy": 1,
-            "yyx": 1,
             "yyy": 1,
-            "yby": 1,
-            "yyb": 1,
-            "yay": 1,
-            "yya": 1,
-
-            "bxb": 1,
-            "bbx": 1,
-            "byb": 1,
-            "bby": 1,
             "bbb": 1,
-            "bab": 1,
-            "bba": 1,
+            "aaa": 1,
 
-            "axa": 1,
-            "aax": 1,
-            "aya": 1,
-            "aay": 1,
-            "aba": 1,
-            "aab": 1,
-            "aaa": 1
+            "xxb": "xx 0.6",
+            "yyx": "yy 0.6",
+            "bba": "bb 0.6",
+            "aay": "aa 0.6",
+
+            "xxy": "Wood    1",
+            "yya": "Dust    1",
+            "bbx": "Boiling 1",
+            "aab": "Heat    1",
+
+            "xxa": "IceBall       1",
+            "aax": "IceNeedles    1",
+            "yyb": "APuddleOfLava 1",
+            "bby": "FireBall      1"
         }
     },
     "to":{
         "one":{
-            "x": 0.3,
-            "y": 0.3,
-            "b": 0.3,
-            "a": 0.3
+            "x": "WaterWall +0.3",
+            "y": "EarthWall +0.3",
+            "b": "Burning   -0.3 peer 1s",
+            "a": "AirAura   3s | -3s b"
         },
         "two":{
-            "xx": 0.6,
-            "xy": 0.6,
-            "xb": 0.6,
-            "xa": 0.6,
+            "xx": "WaterWall +0.6",
+            "yy": "EarthWall +0.6",
+            "bb": "Burning   -0.6 peer 1s",
+            "aa": "AirAura   6s | -3s b",
 
-            "yx": 0.6,
-            "yy": 0.6,
-            "yb": 0.6,
-            "ya": 0.6,
+            "xa": "IceWall  0.6 | -0.6 LavaRay | -0.3 y or b",
+            "yb": "LavaWall 0.6 | -0.6 IceRay  | -0.3 x or a",
 
-            "bx": 0.6,
-            "by": 0.6,
-            "bb": 0.6,
-            "ba": 0.6,
-
-            "ax": 0.6,
-            "ay": 0.6,
-            "ab": 0.6,
-            "aa": 0.6
+            "xb": "WaterWall +0.3",
+            "xy": "EarthWall +0.3",
+            "ba": "Burning   -0.3 peer 1s",
+            "ya": "AirAura   3s | -3s b"
         },
         "three":{
-            "xxx": 1,
-            "xyx": 1,
-            "xxy": 1,
-            "xbx": 1,
-            "xxb": 1,
-            "xax": 1,
-            "xxa": 1,
+            "xxx": "WaterWall +1",
+            "yyy": "EarthWall +1",
+            "bbb": "Burning   -1 peer 1s",
+            "aaa": "AirAura   10s | -3s b",
 
-            "yxy": 1,
-            "yyx": 1,
-            "yyy": 1,
-            "yby": 1,
-            "yyb": 1,
-            "yay": 1,
-            "yya": 1,
+            "xxb": "WaterWall +0.6",
+            "yyx": "EarthWall +0.6",
+            "bba": "Burning   -0.6 peer 1s",
+            "aay": "AirAura   6s | -3s b",
 
-            "bxb": 1,
-            "bbx": 1,
-            "byb": 1,
-            "bby": 1,
-            "bbb": 1,
-            "bab": 1,
-            "bba": 1,
+            "xxy": "WallWood     1 | -1 Heat,    | -0.3 b or a",
+            "yya": "WallDust     1 | -1 Boiling, | -0.3 x or b",
+            "bbx": "BoilingAura 10s | -10s Dust, | -3s a or y",
+            "aab": "HeatAura    10s | -10s Wood, | -3s x or y",
 
-            "axa": 1,
-            "aax": 1,
-            "aya": 1,
-            "aay": 1,
-            "aba": 1,
-            "aab": 1,
-            "aaa": 1
+            "xxa": "Freeze         0.1s",
+            "aax": "IcePlatform    0.3s",
+            "yyb": "HotEarthShield 1   | -1 IceBall   | -0.3 every of IceNeedles  | -0.3 x or a",
+            "bby": "FireAura       10s | -10s IceBall | -0.3s every of IceNeedles | -0.3s x or a"
         }
     }
 }

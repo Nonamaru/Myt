@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/MyGames/MyTFelix/Myt/Content/walkLeft.png</SourceFile>
-  <SourceTime>2024-05-11T20:42:50.8012371+05:00</SourceTime>
-  <DestFile>D:/MyGames/MyTFelix/Myt/Content/bin/DesktopGL/Content/walkLeft.xnb</DestFile>
-  <DestTime>2024-05-11T20:47:59.8362211+05:00</DestTime>
+  <SourceFile>/home/ffs/SSUSI/monogame/Myt/Content/walkLeft.png</SourceFile>
+  <SourceTime>2024-05-12T00:12:48.6007662+05:00</SourceTime>
+  <DestFile>/home/ffs/SSUSI/monogame/Myt/Content/bin/DesktopGL/Content/walkLeft.xnb</DestFile>
+  <DestTime>2024-05-12T00:14:07.1702549+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

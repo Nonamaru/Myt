@@ -54,17 +54,17 @@ class Player : Sprite
         {
             case 1:         // Стоит 
             {
-                spriteBatch.Draw(stayAnime.texture,new Rectangle((int)position.X, (int)position.Y, 80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+                spriteBatch.Draw(stayAnime.texture,new Rectangle((int)position.X, (int)position.Y, 80, 90), new Rectangle(activeFrame *48, 0, 48, 48), Color.White);
             }
             break;
             case 2:         // Идет вправо
             {
-                spriteBatch.Draw(walkRightAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+                spriteBatch.Draw(walkRightAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48, 0, 48, 48), Color.White);
             }
             break;
             case 3:         // Идет влево
             {
-                spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+                spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48, 0, 48, 48), Color.White);
             }
             break;
         };
@@ -77,19 +77,21 @@ class Player : Sprite
 
         Vector2 leftthumbstick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
         playerState = 1;
-        if(GamePad.GetState(PlayerIndex.One).IsConnected)   changeX = leftthumbstick.X * speed;;
+        if(GamePad.GetState(PlayerIndex.One).IsConnected)
+            changeX = leftthumbstick.X * speed;
 
         if (GamePad.GetState(PlayerIndex.One).DPad.Right  == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.D))
         {
             changeX += 2 * speed;
             playerState = 2;
         }
+        
         if (GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
         {
             changeX -= 2 * speed;
             playerState = 3;
-  
         }
+
         if(!doJump)
         {
             if ( Keyboard.GetState().IsKeyDown(Keys.W))
@@ -100,19 +102,19 @@ class Player : Sprite
             {
                 positionYstate = position.Y;
                 this.onTheGround = false;
-                //changeY -= 50;
                 this.doJump = true;
             }
-            if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.S))
+            if (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 position.Y += 9;
             }
             this.SkillsInput();
-        } else {
+        } 
+        else 
+        {
             if((positionYstate - position.Y) <= this.jumpHeigh)
             {
                 changeY -= 12;
-               
             } 
             else
             {
@@ -125,12 +127,10 @@ class Player : Sprite
         {
             if(sprite != this && sprite.Rect.Intersects(Rect))
             {
-                if(this.doJump) this.doJump = false;
-                    position.Y -= changeY ;
-                    position.X += changeX ;
-                    changeY = 0;
-
-                    this.onTheGround = true;
+                position.Y -= changeY ;
+                position.X += changeX ;
+                changeY = 0;
+                this.onTheGround = true;
             } 
         }
         
