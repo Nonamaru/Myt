@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Mime;
@@ -7,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Sprites;
+
 namespace MyGame;
 
 class Player : Sprite
@@ -15,6 +17,13 @@ class Player : Sprite
     AnimationManager stayAnime;
     AnimationManager walkLeftAnime;
     AnimationManager walkRightAnime;
+
+
+    Skills skills;
+    MagickCicle earth;
+    MagickCicle air;
+    MagickCicle water;
+    MagickCicle fire;
     public bool onTheGround = false;
 
     public SpriteEffects flip = SpriteEffects.FlipHorizontally;
@@ -34,6 +43,7 @@ class Player : Sprite
     public  Player(Texture2D texture, Vector2 position, List<Sprite> collisionGroup ) : base(texture , position )
     {
         this.collisionGroup = collisionGroup;
+        this.LoadContent();
     }
 
 
@@ -41,7 +51,6 @@ class Player : Sprite
     {
 
         switch (playerState)
-        
         {
             case 1:         // Стоит 
             {
@@ -58,11 +67,8 @@ class Player : Sprite
                 spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
             }
             break;
-
-
-        }
-
-        
+        };
+        skills.Draw(spriteBatch, true);
     }  
     public override void Update(GameTime gameTime )
     {
@@ -101,6 +107,7 @@ class Player : Sprite
             {
                 position.Y += 9;
             }
+            this.SkillsInput();
         } else {
             if((positionYstate - position.Y) <= this.jumpHeigh)
             {
@@ -148,24 +155,56 @@ class Player : Sprite
             if(activeFrame >= 6){
                 activeFrame = 0;
             }
-         }
-
-        
+        }
     }
 
-    private void CheckDown(){
+    private void CheckDown()
+    {
         if(position.Y > 700) position.Y = 0;
     }
 
-    public void LoadContent(){
-
+    public void LoadContent()
+    {
+        skills = new Skills();
     }
-    public void setWalkAnime(Texture2D textureRight,Texture2D textureLeft ){
+
+    //  Установление анимации 
+    public void setWalkAnime(Texture2D textureRight,Texture2D textureLeft )
+    {
         walkLeftAnime = new AnimationManager(textureLeft , 0 , 0 , new Vector2(48 , 48) );
         walkRightAnime = new AnimationManager(textureRight , 0 , 0 , new Vector2(48 , 48) );
     }
-    public void setStayAnime(Texture2D texture){
+    public void setStayAnime(Texture2D texture)
+    {
         stayAnime = new AnimationManager(texture , 0 , 0 , new Vector2(40 , 40) );
+    }
+
+    // Загрузка шариков
+    public void EarthInit(Texture2D texture )
+    {
+        earth = new MagickCicle(texture , Vector2.Zero,'E');
+    }
+    public void AirInit(Texture2D texture )
+    {
+        air = new MagickCicle(texture , Vector2.Zero,'A');
+    }
+    public void FireInit(Texture2D texture )
+    {
+        fire = new MagickCicle(texture , Vector2.Zero,'F');
+    }
+    public void WaterInit(Texture2D texture )
+    {
+        water = new MagickCicle(texture , Vector2.Zero,'W');
+    }
+
+    // Нажатия на заклинания  
+    private void SkillsInput()
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.L))
+        {
+            Console.WriteLine("Press L");
+            skills.Press(water);
+        }
     }
 }
 

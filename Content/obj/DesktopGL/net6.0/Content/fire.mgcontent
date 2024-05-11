@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/MyGames/MyTFelix/Myt/Content/Stay4.png</SourceFile>
-  <SourceTime>2024-05-11T17:24:50.6273989+05:00</SourceTime>
-  <DestFile>D:/MyGames/MyTFelix/Myt/Content/bin/DesktopGL/Content/Stay4.xnb</DestFile>
-  <DestTime>2024-05-11T17:33:05.393608+05:00</DestTime>
+  <SourceFile>D:/MyGames/MyTFelix/Myt/Content/fire.png</SourceFile>
+  <SourceTime>2024-05-05T03:26:55.7406175+05:00</SourceTime>
+  <DestFile>D:/MyGames/MyTFelix/Myt/Content/bin/DesktopGL/Content/fire.xnb</DestFile>
+  <DestTime>2024-05-11T23:27:24.6145769+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

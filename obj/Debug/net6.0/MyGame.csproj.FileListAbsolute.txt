@@ -63,11 +63,9 @@ D:\MyGames\MyTFelix\Myt\obj\Debug\net6.0\MyGame.pdb
 D:\MyGames\MyTFelix\Myt\obj\Debug\net6.0\MyGame.genruntimeconfig.cache
 D:\MyGames\MyTFelix\Myt\obj\Debug\net6.0\ref\MyGame.dll
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\playerOnt.xnb
-D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Stay1.xnb
-D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Stay2.xnb
-D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Stay3.xnb
-D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Stay4.xnb
-D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Stay5.xnb
-D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Stay6.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\walkLeft.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\walkRight.xnb
+D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\air.xnb
+D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\earth.xnb
+D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\fire.xnb
+D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\water.xnb

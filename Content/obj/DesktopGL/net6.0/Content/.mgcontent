@@ -8,18 +8,14 @@
     <File>D:/MyGames/MyTFelix/Myt/Content/ground.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/PlayerOnt.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/Stay.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay1.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay2.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay3.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay4.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay5.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay6.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/walkRight.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/walkLeft.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/water.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/fire.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/air.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/earth.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

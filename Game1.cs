@@ -54,6 +54,10 @@ public class Game1 : Game
         player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
         player.setStayAnime(Content.Load<Texture2D>("PlayerOnt"));
         player.setWalkAnime(Content.Load<Texture2D>("walkRight") , Content.Load<Texture2D>("walkLeft"));
+        player.EarthInit(Content.Load<Texture2D>("earth"));
+        player.AirInit(Content.Load<Texture2D>("air"));
+        player.WaterInit(Content.Load<Texture2D>("water"));
+        player.FireInit(Content.Load<Texture2D>("fire"));
         //animate.Update();
         //sprites.Add(player);
 
@@ -72,18 +76,13 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime) 
     { 
         GraphicsDevice.Clear(Color.CornflowerBlue); 
-
  
         _spriteBatch.Begin(); 
-        //_spriteBatch.Draw(ground.texture, ground.position, Color.White);
         foreach(var sprite in sprites)
         {   
             if(sprite != player)    sprite.Draw(_spriteBatch);
         }
         player.Draw(_spriteBatch , true); 
-        //_spriteBatch.Draw(animeList[activeFrame], player.position, Color.White);
-        //_spriteBatch.Draw(testAnime,new Rectangle(0 , 48, 48, 48), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
-
 
         _spriteBatch.End(); 
  
