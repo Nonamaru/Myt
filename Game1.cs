@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Mime;
 using System.Runtime.ExceptionServices;
 using System.Runtime.Serialization.Formatters;
 using Microsoft.Xna.Framework;
@@ -13,7 +15,6 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    SpriteEffects flip = SpriteEffects.FlipHorizontally;
     Player player;
     List<Sprite> sprites;
 
@@ -21,6 +22,9 @@ public class Game1 : Game
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
+        _graphics.PreferredBackBufferHeight = 768;
+        _graphics.PreferredBackBufferWidth  = 1024;
+
         IsMouseVisible = true;
     }
 
@@ -37,19 +41,21 @@ public class Game1 : Game
         sprites = new();
         Texture2D ground_texture = Content.Load<Texture2D>("ground"); 
 
-        for(int i = 0 ; i <= 400 ; i += 40)
+        for(int i = 0 ; i <= 800 ; i += 40)
         {
-            sprites.Add(new Sprite(ground_texture , new Vector2(i , 400)));
+            sprites.Add(new Sprite(ground_texture , new Vector2(i , 400) ));
         }
         
         for(int i = 200 ; i <= 280 ; i += 40)
         {
-            sprites.Add(new Sprite(ground_texture , new Vector2(i , 300)));
+            sprites.Add(new Sprite(ground_texture , new Vector2(i , 200)));
         }
 
         player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
-
-        sprites.Add(player);
+        player.setStayAnime(Content.Load<Texture2D>("PlayerOnt"));
+        player.setWalkAnime(Content.Load<Texture2D>("walkRight") , Content.Load<Texture2D>("walkLeft"));
+        //animate.Update();
+        //sprites.Add(player);
 
     }
 
@@ -59,6 +65,7 @@ public class Game1 : Game
             Exit();
 
         player.Update(gameTime);
+
         base.Update(gameTime);
     }
 
@@ -74,6 +81,10 @@ public class Game1 : Game
             if(sprite != player)    sprite.Draw(_spriteBatch);
         }
         player.Draw(_spriteBatch , true); 
+        //_spriteBatch.Draw(animeList[activeFrame], player.position, Color.White);
+        //_spriteBatch.Draw(testAnime,new Rectangle(0 , 48, 48, 48), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+
+
         _spriteBatch.End(); 
  
         base.Draw(gameTime); 

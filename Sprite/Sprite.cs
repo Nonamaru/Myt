@@ -12,6 +12,8 @@ namespace MyGame
         public Texture2D texture;
         public Vector2 position;
 
+        public int Widht;
+        public int Height;
         public Rectangle Rect
         {
             get
@@ -20,13 +22,14 @@ namespace MyGame
                 (
                     (int)position.X,
                     (int)position.Y,
-                    70,
-                    30
+                    80,
+                    50
                 );
             }
         }
 
-        public  Sprite(Texture2D texture , Vector2 position)
+        public  Sprite(Texture2D texture , Vector2 position )
+
         {
             this.texture = texture;
             this.position = position;

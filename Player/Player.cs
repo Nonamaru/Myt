@@ -1,29 +1,35 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Mime;
+using System.Runtime.ExceptionServices;
+using System.Runtime.Serialization.Formatters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Serialization;
-using MonoGame.Framework.Utilities;
-
+using MonoGame.Extended.Sprites;
 namespace MyGame;
 
 class Player : Sprite
 {
+
+    AnimationManager stayAnime;
+    AnimationManager walkLeftAnime;
+    AnimationManager walkRightAnime;
     public bool onTheGround = false;
+
     public SpriteEffects flip = SpriteEffects.FlipHorizontally;
 
-    public int x = 0, y = 0;
+    public int speed = 2;
     private static readonly float SCALE = 1f; 
     
+    private int playerState = 0;
     private bool doJump = false;
     private int jumpHeigh = 100;
     private float positionYstate = 0;
-    List<Sprite> collisionGroup;
-    
-    
 
+    List<Sprite> collisionGroup;
+    int activeFrame = 0;
+    int counter = 0;
 
     public  Player(Texture2D texture, Vector2 position, List<Sprite> collisionGroup ) : base(texture , position )
     {
@@ -33,28 +39,56 @@ class Player : Sprite
 
     public virtual void Draw(SpriteBatch spriteBatch , bool flip)
     {
-        spriteBatch.Draw(texture, position, null, Color.White ,0.0f, Vector2.Zero, 1, this.flip , 0 ); 
-    }
+
+        switch (playerState)
+        
+        {
+            case 1:         // Стоит 
+            {
+                spriteBatch.Draw(stayAnime.texture,new Rectangle((int)position.X, (int)position.Y, 80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+            }
+            break;
+            case 2:         // Идет вправо
+            {
+                spriteBatch.Draw(walkRightAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+            }
+            break;
+            case 3:         // Идет влево
+            {
+                spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
+            }
+            break;
+
+
+        }
+
+        
+    }  
     public override void Update(GameTime gameTime )
     {
         float changeX = 0;
         float changeY = 6;
-        
-        if (GamePad.GetState(PlayerIndex.One).Buttons.RightStick == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.D))
+
+        Vector2 leftthumbstick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
+        playerState = 1;
+        if(GamePad.GetState(PlayerIndex.One).IsConnected)   changeX = leftthumbstick.X * speed;;
+
+        if (GamePad.GetState(PlayerIndex.One).DPad.Right  == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.D))
         {
-            changeX += 2;
-            this.flip = SpriteEffects.None;
+            changeX += 2 * speed;
+            playerState = 2;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.LeftStick == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
+        if (GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
         {
-            changeX -= 2;
-            this.flip = SpriteEffects.FlipHorizontally;
+            changeX -= 2 * speed;
+            playerState = 3;
+  
         }
         if(!doJump)
         {
             if ( Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                changeY -= 12;
+                changeY -= 12 * speed;
             }
             if ((GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Space)) && this.onTheGround && !this.doJump)
             {
@@ -85,22 +119,66 @@ class Player : Sprite
             if(sprite != this && sprite.Rect.Intersects(Rect))
             {
                 if(this.doJump) this.doJump = false;
-                position.Y -= changeY ;
-                position.X += changeX ;
-                this.onTheGround = true;
+                    position.Y -= changeY ;
+                    position.X += changeX ;
+                    changeY = 0;
+
+                    this.onTheGround = true;
             } 
         }
         
         position.Y += changeY;
         position.X += changeX;
 
-
+        if(changeX > 0)
+        {
+            this.flip = SpriteEffects.None;
+        }
+        else
+        {
+            this.flip = SpriteEffects.FlipHorizontally; 
+        }
         this.CheckDown();
+        stayAnime.Update();
         base.Update(gameTime);
+
+        if(++counter > 7){          // Костыль для анимации 
+            counter = 0;
+            activeFrame++;
+            if(activeFrame >= 6){
+                activeFrame = 0;
+            }
+         }
+
         
     }
 
     private void CheckDown(){
-        if(position.Y > 500) position.Y = 0;
+        if(position.Y > 700) position.Y = 0;
+    }
+
+    public void LoadContent(){
+
+    }
+    public void setWalkAnime(Texture2D textureRight,Texture2D textureLeft ){
+        walkLeftAnime = new AnimationManager(textureLeft , 0 , 0 , new Vector2(48 , 48) );
+        walkRightAnime = new AnimationManager(textureRight , 0 , 0 , new Vector2(48 , 48) );
+    }
+    public void setStayAnime(Texture2D texture){
+        stayAnime = new AnimationManager(texture , 0 , 0 , new Vector2(40 , 40) );
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+//spriteBatch.Draw(stayAnime.texture,new Rectangle( (int)position.X , (int)position.Y, 48, 48), stayAnime.getFrame(), Color.White);
+// spriteBatch.Draw(texture, position, null, Color.White ,0.0f, Vector2.Zero, 1, this.flip , 0 );  // Версия без анимации 
+//spriteBatch.Draw(stayAnime.texture,new Rectangle( (int)position.X , (int)position.Y, 48, 48), new Rectangle( (int)position.X*48 , (int)position.Y, 48, 48), Color.White);
