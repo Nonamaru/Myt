@@ -20,6 +20,8 @@ namespace MyGame
 
         private int counter;
         private int activeFrame;
+
+    
         public MagickCicle(Texture2D texture , Vector2 position , char character):base(texture, position)
         {
             this.texture  = texture;

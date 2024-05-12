@@ -52,7 +52,7 @@ public class Game1 : Game
         }
 
         player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
-        player.LoadContent((Content.Load<Texture2D>("fireBall1")));
+        player.LoadContent(Content.Load<Texture2D>("fireBall1") ,Content.Load<Texture2D>("eathTower") );
         player.setStayAnime(Content.Load<Texture2D>("PlayerOnt"));
         player.setWalkAnime(Content.Load<Texture2D>("walkRight") , Content.Load<Texture2D>("walkLeft"));
         player.EarthInit(Content.Load<Texture2D>("earth"));

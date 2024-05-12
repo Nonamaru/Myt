@@ -36,11 +36,12 @@ namespace MyGame
         {
             magickCicles = new List<MagickCicle>();
         }
-        public void Spellinit(Texture2D texture)
+        public void Spellinit(Texture2D texture, Texture2D textureEarth)
         {
 
             spells       = new List<Spell>();
-            spells.Add(new Spell(texture , new Vector2(100 , 200) , 2 , 210));
+            spells.Add(new Spell(texture , new Vector2(100 , 200) , 12 , 210 , 100));
+            spells.Add(new Spell(textureEarth , new Vector2(100 , 200) , 0 , 207 , 160));
 
             activeSpells = new List<Spell>();
         }
@@ -144,8 +145,9 @@ namespace MyGame
             {
               if(spell.index == index)
               {
-                spell.speed          = 10;
-                spell.position       = playerPosithion;
+                spell.position.Y       = playerPosithion.Y;
+                spell.position.X       = playerPosithion.X + 60;
+
                 
                 activeSpells.Add(spell);
               }

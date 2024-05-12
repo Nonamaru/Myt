@@ -164,10 +164,10 @@ class Player : Sprite
         if(position.Y > 700) position.Y = 0;
     }
 
-    public void LoadContent(Texture2D texture)
+    public void LoadContent(Texture2D texture, Texture2D eathTower)
     {
         skills = new Skills();
-        skills.Spellinit(texture);
+        skills.Spellinit(texture , eathTower);
 
     }
 

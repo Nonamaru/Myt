@@ -7,6 +7,8 @@
 
 
 */
+using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Mime;
 using Microsoft.Xna.Framework;
@@ -24,15 +26,19 @@ namespace MyGame
         public Vector2 startPosithion;
         public int index;
 
+        public int timerExist = 0; 
+        public int timerAlive = 0; 
+
         private int counter;
         private int activeFrame;
 
-        public Spell(Texture2D texture , Vector2 position , int speed , int index)
+        public Spell(Texture2D texture , Vector2 position , int speed , int index , int timerAlive)
         {
             this.texture  = texture;
             this.position = position;
             this.speed = speed;
             this.index = index;
+            this.timerAlive = timerAlive;
         }
 
         public void SpellAnimate(){
@@ -51,12 +57,8 @@ namespace MyGame
 
         public bool CheckRemove()
         {
-            if(this.position.X > 900)
-            {
-                this.position.X = 100;
-                return true;
-            }
-            
+            if(timerExist      > timerAlive){   timerExist = 0 ; return true;}
+            timerExist++;
             return false;
         }
 
