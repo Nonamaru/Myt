@@ -24,11 +24,24 @@ namespace MyGame
     class Skills 
     {
         List<MagickCicle> magickCicles;
+
+        List<Spell> spells;
+        List<Spell> activeSpells;
         private char[] Buff = {' ' , ' ' , ' '};
         private String BuffString = "";
+
+        public Vector2 playerPosithion;
         public Skills()    
         {
             magickCicles = new List<MagickCicle>();
+        }
+        public void Spellinit(Texture2D texture)
+        {
+
+            spells       = new List<Spell>();
+            spells.Add(new Spell(texture , Vector2.Zero , 2 , 210));
+
+            activeSpells = new List<Spell>();
         }
         public void addBuffer(MagickCicle magick)
         {
@@ -73,6 +86,11 @@ namespace MyGame
                 }
                 break;
             }
+
+            foreach(var sprite in activeSpells)
+            {   
+                spriteBatch.Draw(sprite.texture ,  new Rectangle( (int)sprite.startPosithion.X + sprite.speed , (int)sprite.startPosithion.Y   ,80,80), Color.White);            
+            }
         }
         private int counter;
         private int activeFrame;
@@ -85,20 +103,41 @@ namespace MyGame
                     activeFrame = 0;
                 }
             }
+            
+            foreach(var sprite in activeSpells)
+            {
+                sprite.Update();
+                if(sprite.CheckRemove()) activeSpells.Remove(sprite);
+            }
         }
 
 
         public void SendSkill()
         {
-            magickCicles = new List<MagickCicle>();;
-        }
-        public void GetSkill()
-        {
+
+            int indexSpell = 0;
+            foreach (var cicle in magickCicles)
+            {
+                indexSpell += cicle.character;
+            }
+            magickCicles = new List<MagickCicle>();
+            this.AddActiveSpell(indexSpell);
 
         }
-        public char[] getBuffer()
+
+        private void AddActiveSpell(int index)
         {
-        return Buff;
+
+            foreach(var spell in spells)
+            {
+              if(spell.index == index)
+              {
+                spell.speed          = 2;
+                spell.startPosithion = playerPosithion;
+                activeSpells.Add(spell);
+              }
+            }
+
         } 
     }
 }

@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Sprites;
 
 namespace MyGame;
@@ -43,7 +44,6 @@ class Player : Sprite
     public  Player(Texture2D texture, Vector2 position, List<Sprite> collisionGroup ) : base(texture , position )
     {
         this.collisionGroup = collisionGroup;
-        this.LoadContent();
     }
 
 
@@ -164,9 +164,11 @@ class Player : Sprite
         if(position.Y > 700) position.Y = 0;
     }
 
-    public void LoadContent()
+    public void LoadContent(Texture2D texture)
     {
         skills = new Skills();
+        skills.Spellinit(texture);
+
     }
 
     //  Установление анимации 
@@ -203,6 +205,7 @@ class Player : Sprite
     bool KeyDownJ = false;
     bool KeyDownL = false;
     bool KeyDownK = false;
+    bool KeyDownE = false;
     private void SkillsInput()
     {
         if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.H)) 
@@ -255,9 +258,17 @@ class Player : Sprite
         }        
         if(Keyboard.GetState().IsKeyDown(Keys.E))
         {
+            KeyDownE = true;
+        }
+
+        if(Keyboard.GetState().IsKeyUp(Keys.E) && KeyDownE)
+        {
             skills.SendSkill();
+            skills.playerPosithion = position;
+            KeyDownE = false;
         }
     }
+
 }
 
 

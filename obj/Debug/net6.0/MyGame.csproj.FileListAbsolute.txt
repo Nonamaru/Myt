@@ -69,3 +69,4 @@ D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\air.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\earth.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\fire.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\water.xnb
+D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\fireBall1.xnb
