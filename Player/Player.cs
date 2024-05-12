@@ -215,8 +215,6 @@ class Player : Sprite
         if((Keyboard.GetState().IsKeyUp(Keys.H)) && KeyDownH)
         {
             Console.WriteLine("UnPress H");
-            fire.posithion.X = 55;
-            fire.posithion.Y =  0;
             skills.Press(fire);
             KeyDownH = false;
         }
@@ -227,8 +225,6 @@ class Player : Sprite
         if((Keyboard.GetState().IsKeyUp(Keys.J)) && KeyDownJ)
         {
             Console.WriteLine("UnPress J");
-            fire.posithion.X = 55;
-            fire.posithion.Y =  0;
             skills.Press(water);
             KeyDownJ = false;
         }
@@ -239,8 +235,6 @@ class Player : Sprite
         if((Keyboard.GetState().IsKeyUp(Keys.K)) && KeyDownK)
         {
             Console.WriteLine("Press K");
-            water.posithion.X = - 75;
-            water.posithion.Y =  0;
             skills.Press(earth);
             KeyDownK = false;
         }
@@ -251,8 +245,6 @@ class Player : Sprite
         if(Keyboard.GetState().IsKeyUp(Keys.L) && KeyDownL)
         {
             Console.WriteLine("Unpress L");
-            air.posithion.X = - 75;
-            air.posithion.Y =  -75;
             skills.Press(air);
             KeyDownL = false;
         }        
@@ -263,8 +255,9 @@ class Player : Sprite
 
         if(Keyboard.GetState().IsKeyUp(Keys.E) && KeyDownE)
         {
+            skills.playerPosithion.X = position.X;
+            skills.playerPosithion.Y = position.Y;
             skills.SendSkill();
-            skills.playerPosithion = position;
             KeyDownE = false;
         }
     }

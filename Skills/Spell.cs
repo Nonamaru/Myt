@@ -14,18 +14,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MyGame
 {
-    class Spell : Sprite
+    class Spell
     {
         public int speed = 1;
         
-        public Vector2 posithion;
+
+        public Texture2D texture;
+        public Vector2 position;
         public Vector2 startPosithion;
         public int index;
 
         private int counter;
         private int activeFrame;
 
-        public Spell(Texture2D texture , Vector2 position , int speed , int index):base(texture, position)
+        public Spell(Texture2D texture , Vector2 position , int speed , int index)
         {
             this.texture  = texture;
             this.position = position;
@@ -42,17 +44,16 @@ namespace MyGame
                 }
             }
         }
-        public void Update()
+        public void UpdateUp()
         {
-            this.speed = this.speed + (int)startPosithion.X;
+           position.X += speed;
         }
 
         public bool CheckRemove()
         {
-            if(posithion.X > 500)
+            if(this.position.X > 900)
             {
-                speed = 2;
-                
+                this.position.X = 100;
                 return true;
             }
             

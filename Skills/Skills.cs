@@ -27,6 +27,7 @@ namespace MyGame
 
         List<Spell> spells;
         List<Spell> activeSpells;
+        List<Spell> nonActiveSpells;
         private char[] Buff = {' ' , ' ' , ' '};
         private String BuffString = "";
 
@@ -39,7 +40,7 @@ namespace MyGame
         {
 
             spells       = new List<Spell>();
-            spells.Add(new Spell(texture , Vector2.Zero , 2 , 210));
+            spells.Add(new Spell(texture , new Vector2(100 , 200) , 2 , 210));
 
             activeSpells = new List<Spell>();
         }
@@ -89,11 +90,15 @@ namespace MyGame
 
             foreach(var sprite in activeSpells)
             {   
-                spriteBatch.Draw(sprite.texture ,  new Rectangle( (int)sprite.startPosithion.X + sprite.speed , (int)sprite.startPosithion.Y   ,80,80), Color.White);            
+                spriteBatch.Draw(sprite.texture ,  new Rectangle( (int)sprite.position.X , (int)sprite.position.Y ,80,80), Color.White);  
+               
+                          
             }
         }
         private int counter;
         private int activeFrame;
+        bool checkDelete = false; 
+        int indexElement = 0;
         public void Update()
         {
             if(++counter > 12){          // Костыль для анимации 
@@ -106,15 +111,23 @@ namespace MyGame
             
             foreach(var sprite in activeSpells)
             {
-                sprite.Update();
-                if(sprite.CheckRemove()) activeSpells.Remove(sprite);
+                sprite.UpdateUp();
+                
+                if(sprite.CheckRemove())
+                {
+                    activeSpells = new List<Spell>();
+                    // nonActiveSpells = new List<Spell>();
+                    // nonActiveSpells.Add(sprite);
+                } 
+
             }
+
+
         }
 
 
         public void SendSkill()
         {
-
             int indexSpell = 0;
             foreach (var cicle in magickCicles)
             {
@@ -122,7 +135,6 @@ namespace MyGame
             }
             magickCicles = new List<MagickCicle>();
             this.AddActiveSpell(indexSpell);
-
         }
 
         private void AddActiveSpell(int index)
@@ -132,8 +144,9 @@ namespace MyGame
             {
               if(spell.index == index)
               {
-                spell.speed          = 2;
-                spell.startPosithion = playerPosithion;
+                spell.speed          = 10;
+                spell.position       = playerPosithion;
+                
                 activeSpells.Add(spell);
               }
             }
