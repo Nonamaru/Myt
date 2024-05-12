@@ -3,6 +3,10 @@
     "",
     "\\Player"
   ],
+<<<<<<< Updated upstream
   "SelectedNode": "\\Game1.cs",
+=======
+  "SelectedNode": "\\MyGame.csproj",
+>>>>>>> Stashed changes
   "PreviewInSolutionExplorer": false
 }
