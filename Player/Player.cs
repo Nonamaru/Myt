@@ -155,6 +155,8 @@ class Player : Sprite
                 activeFrame = 0;
             }
         }
+
+        skills.Update();
     }
 
     private void CheckDown()
@@ -203,56 +205,57 @@ class Player : Sprite
     bool KeyDownK = false;
     private void SkillsInput()
     {
-
-
-        if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.H)) && !KeyDownH) 
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.H)) 
         {
-            Console.WriteLine("Press H");
             KeyDownH = true;
         }
         if((Keyboard.GetState().IsKeyUp(Keys.H)) && KeyDownH)
         {
+            Console.WriteLine("UnPress H");
             fire.posithion.X = 55;
             fire.posithion.Y =  0;
             skills.Press(fire);
             KeyDownH = false;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.J)&& !KeyDownJ) 
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.J)) 
         {
-            Console.WriteLine("Press H");
             KeyDownJ = true;
         }
         if((Keyboard.GetState().IsKeyUp(Keys.J)) && KeyDownJ)
         {
+            Console.WriteLine("UnPress J");
             fire.posithion.X = 55;
             fire.posithion.Y =  0;
             skills.Press(water);
             KeyDownJ = false;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
         {
-            Console.WriteLine("Press J");
-
             KeyDownK = true;
         }
         if((Keyboard.GetState().IsKeyUp(Keys.K)) && KeyDownK)
         {
+            Console.WriteLine("Press K");
             water.posithion.X = - 75;
             water.posithion.Y =  0;
-            skills.Press(water);
+            skills.Press(earth);
             KeyDownK = false;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.L))  
         {
-            Console.WriteLine("Press K");
-            earth.posithion.X = 0;
-            earth.posithion.Y = 35;
-            skills.Press(earth);
+            KeyDownL = true;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.L))
+        if(Keyboard.GetState().IsKeyUp(Keys.L) && KeyDownL)
         {
-            Console.WriteLine("Press L");
+            Console.WriteLine("Unpress L");
+            air.posithion.X = - 75;
+            air.posithion.Y =  -75;
             skills.Press(air);
+            KeyDownL = false;
+        }        
+        if(Keyboard.GetState().IsKeyDown(Keys.E))
+        {
+            skills.SendSkill();
         }
     }
 }
