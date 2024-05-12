@@ -4,16 +4,16 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/MyGames/MyTFelix/Myt/Content/ball.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/ground.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/PlayerOnt.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/Stay.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/walkRight.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/walkLeft.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/water.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/fire.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/air.png</File>
-    <File>D:/MyGames/MyTFelix/Myt/Content/earth.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/ball.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/ground.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/PlayerOnt.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/Stay.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/walkRight.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/walkLeft.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/water.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/fire.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/air.png</File>
+    <File>/home/ffs/SSUSI/monogame/Myt/Content/earth.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
