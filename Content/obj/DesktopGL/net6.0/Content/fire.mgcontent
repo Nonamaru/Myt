@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/home/ffs/SSUSI/monogame/Myt/Content/fire.png</SourceFile>
-  <SourceTime>2024-05-12T00:12:48.6007662+05:00</SourceTime>
-  <DestFile>/home/ffs/SSUSI/monogame/Myt/Content/bin/DesktopGL/Content/fire.xnb</DestFile>
-  <DestTime>2024-05-12T00:14:07.1702549+05:00</DestTime>
+  <SourceFile>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/fire.png</SourceFile>
+  <SourceTime>2024-05-05T03:26:55.7406175+05:00</SourceTime>
+  <DestFile>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/bin/DesktopGL/Content/fire.xnb</DestFile>
+  <DestTime>2024-05-14T22:53:21.765105+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

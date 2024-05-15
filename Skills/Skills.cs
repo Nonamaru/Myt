@@ -24,26 +24,40 @@ namespace MyGame
     class Skills 
     {
         List<MagickCicle> magickCicles;
+
+        List<Spell> spells;
+        List<Spell> activeSpells;
+        List<Spell> nonActiveSpells;
         private char[] Buff = {' ' , ' ' , ' '};
         private String BuffString = "";
+
+        public Vector2 playerPosithion;
         public Skills()    
         {
             magickCicles = new List<MagickCicle>();
         }
+        public void Spellinit(Texture2D texture, Texture2D textureEarth, Texture2D textureFire , Texture2D textureWaterBall)
+        {
+            // F - 70 , W - 87 , A - 65 , E - 69
+            spells = new List<Spell>();
+            spells.Add(new Spell(texture,           new Vector2(100 , 200) , false ,12 , 205 , 100));
+            spells.Add(new Spell(textureEarth,      new Vector2(100 , 200) , false ,0  , 207 , 160));
+            spells.Add(new Spell(textureFire,       new Vector2(playerPosithion.X , playerPosithion.Y) , true  ,0  , 210 , 160));
+            spells.Add(new Spell(textureWaterBall , new Vector2(100 , 200) , false ,12  , 261 , 160));
+
+            activeSpells = new List<Spell>();
+            nonActiveSpells = new List<Spell>();
+        }
         public void addBuffer(MagickCicle magick)
         {
-            int counter = 0;
-            char[] bufferChar = BuffString.ToCharArray();
-            BuffString += magick.character; 
-            if(BuffString.Length <= 3)
-            {
-                magickCicles.Add(magick);
-            }
-            else
-            {
-                //magickCicles.RemoveAt(2);
-            }
-            Console.Write(counter);
+            int counter = magickCicles.Count;
+            if(counter < 3){
+                magickCicles.Insert(0, magick);
+            }else{
+                magickCicles[2] = magickCicles[1];
+                magickCicles[1] = magickCicles[0];
+                magickCicles[0] = magick;
+            }            
         }
         public void addBufferMagick(MagickCicle magick)
         {
@@ -57,29 +71,95 @@ namespace MyGame
 
         public virtual void Draw(SpriteBatch spriteBatch , Vector2 posithion)
         {
-            foreach(var sprite in magickCicles )
-            {
-                spriteBatch.Draw(sprite.texture ,  new Rectangle((int)posithion.X - (int)sprite.posithion.X , (int)posithion.Y - (int)sprite.posithion.Y , 30 , 30),new Rectangle(46, 0, 20 , 20), Color.White);
+            switch (magickCicles.Count){
+                case 1:
+                {
+                    spriteBatch.Draw(magickCicles[0].texture ,  new Rectangle((int)posithion.X - 15, (int)posithion.Y,30,30),new Rectangle(16*this.activeFrame,0,16,16), Color.White);            
+                }
+                break;
+                case 2:
+                {
+                    spriteBatch.Draw(magickCicles[0].texture ,  new Rectangle((int)posithion.X - 15, (int)posithion.Y,30,30),new Rectangle(16*this.activeFrame,0,16,16), Color.White);            
+                    spriteBatch.Draw(magickCicles[1].texture ,  new Rectangle((int)posithion.X + 20, (int)posithion.Y - 30,30,30),new Rectangle(16*this.activeFrame,0,16,16), Color.White);            
+                }
+                break;
+                case 3:
+                {
+                    spriteBatch.Draw(magickCicles[0].texture ,  new Rectangle((int)posithion.X - 15, (int)posithion.Y  , 30,30),new Rectangle(16*this.activeFrame,0,16,16), Color.White);            
+                    spriteBatch.Draw(magickCicles[1].texture ,  new Rectangle((int)posithion.X + 20, (int)posithion.Y  - 30,30,30),new Rectangle(16*this.activeFrame,0,16,16), Color.White);            
+                    spriteBatch.Draw(magickCicles[2].texture ,  new Rectangle((int)posithion.X + 60, (int)posithion.Y   ,30,30),new Rectangle(16*this.activeFrame,0,16,16), Color.White);            
+                }
+                break;
+            }
+
+            foreach(var sprite in activeSpells)
+            {   
+                spriteBatch.Draw(sprite.texture ,  new Rectangle( (int)sprite.position.X , (int)sprite.position.Y ,80,80), Color.White);  
+               
+                          
             }
         }
-
+        private int counter;
+        private int activeFrame;
+        bool checkDelete = false; 
+        int indexElement = 0;
         public void Update()
         {
+            if(++counter > 12){          // Костыль для анимации 
+                counter = 0;
+                activeFrame++;
+                if(activeFrame >= 3){
+                    activeFrame = 0;
+                }
+            }
+            
+            foreach(var sprite in activeSpells)
+            {
+                sprite.UpdateUp(playerPosithion);
+                
+                if(sprite.CheckRemove())
+                {
+                    //activeSpells = new List<Spell>();
+                    // nonActiveSpells = new List<Spell>();
+                     nonActiveSpells.Add(sprite);
+                } 
 
+            }
+
+
+            foreach(var sprite in nonActiveSpells)
+            {
+                activeSpells.Remove(sprite);
+            }
+
+            nonActiveSpells.Clear();
         }
 
 
-        public void sendSkill()
+        public void SendSkill()
+        {
+            int indexSpell = 0;
+            foreach (var cicle in magickCicles)
+            {
+                indexSpell += cicle.character;
+            }
+            magickCicles = new List<MagickCicle>();
+            this.AddActiveSpell(indexSpell);
+        }
+
+        private void AddActiveSpell(int index)
         {
 
-        }
-        public void getSkill()
-        {
-
-        }
-        public char[] getBuffer()
-        {
-        return Buff;
+            foreach(var spell in spells)
+            {
+              if(spell.index == index)
+              {
+                spell.position.Y       = playerPosithion.Y;
+                spell.position.X       = playerPosithion.X + 60;
+            
+                activeSpells.Add(new Spell(spell.texture , spell.position , spell.goToPlayer , spell.speed , spell.index , spell.timerAlive));
+              }
+            }
         } 
     }
 }

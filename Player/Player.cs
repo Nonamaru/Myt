@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Sprites;
 
 namespace MyGame;
@@ -43,7 +44,6 @@ class Player : Sprite
     public  Player(Texture2D texture, Vector2 position, List<Sprite> collisionGroup ) : base(texture , position )
     {
         this.collisionGroup = collisionGroup;
-        this.LoadContent();
     }
 
 
@@ -54,17 +54,17 @@ class Player : Sprite
         {
             case 1:         // Стоит 
             {
-                spriteBatch.Draw(stayAnime.texture,new Rectangle((int)position.X, (int)position.Y, 80, 90), new Rectangle(activeFrame *48, 0, 48, 48), Color.White);
+                spriteBatch.Draw(stayAnime.texture,new Rectangle((int)position.X, (int)position.Y, 80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
             }
             break;
             case 2:         // Идет вправо
             {
-                spriteBatch.Draw(walkRightAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48, 0, 48, 48), Color.White);
+                spriteBatch.Draw(walkRightAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
             }
             break;
             case 3:         // Идет влево
             {
-                spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48, 0, 48, 48), Color.White);
+                spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
             }
             break;
         };
@@ -77,21 +77,19 @@ class Player : Sprite
 
         Vector2 leftthumbstick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
         playerState = 1;
-        if(GamePad.GetState(PlayerIndex.One).IsConnected)
-            changeX = leftthumbstick.X * speed;
+        if(GamePad.GetState(PlayerIndex.One).IsConnected)   changeX = leftthumbstick.X * speed;;
 
         if (GamePad.GetState(PlayerIndex.One).DPad.Right  == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.D))
         {
             changeX += 2 * speed;
             playerState = 2;
         }
-        
         if (GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
         {
             changeX -= 2 * speed;
             playerState = 3;
+  
         }
-
         if(!doJump)
         {
             if ( Keyboard.GetState().IsKeyDown(Keys.W))
@@ -102,19 +100,19 @@ class Player : Sprite
             {
                 positionYstate = position.Y;
                 this.onTheGround = false;
+                //changeY -= 50;
                 this.doJump = true;
             }
-            if (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.S))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 position.Y += 9;
             }
             this.SkillsInput();
-        } 
-        else 
-        {
+        } else {
             if((positionYstate - position.Y) <= this.jumpHeigh)
             {
                 changeY -= 12;
+               
             } 
             else
             {
@@ -127,11 +125,10 @@ class Player : Sprite
         {
             if(sprite != this && sprite.Rect.Intersects(Rect))
             {
-                if(this.doJump) this.doJump = false;
+                    //if(this.doJump) this.doJump = false;
                     position.Y -= changeY ;
                     position.X += changeX ;
                     changeY = 0;
-
                     this.onTheGround = true;
             } 
         }
@@ -158,6 +155,8 @@ class Player : Sprite
                 activeFrame = 0;
             }
         }
+
+        skills.Update();
     }
 
     private void CheckDown()
@@ -165,9 +164,11 @@ class Player : Sprite
         if(position.Y > 700) position.Y = 0;
     }
 
-    public void LoadContent()
+    public void LoadContent(Texture2D texture, Texture2D eathTower, Texture2D fullFre, Texture2D waterBall)
     {
         skills = new Skills();
+        skills.Spellinit(texture , eathTower , fullFre , waterBall);
+
     }
 
     //  Установление анимации 
@@ -202,62 +203,68 @@ class Player : Sprite
     // Нажатия на заклинания  
     bool KeyDownH = false;
     bool KeyDownJ = false;
-    bool KeyDownL = false;
+    bool KeyDownU = false;
     bool KeyDownK = false;
+    bool KeyDownE = false;
     private void SkillsInput()
     {
-
-
-        if ((GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.H)) && !KeyDownH) 
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.H)) 
         {
-            Console.WriteLine("Press H");
             KeyDownH = true;
         }
-        if((Keyboard.GetState().IsKeyUp(Keys.H)) && KeyDownH)
+        if(Keyboard.GetState().IsKeyUp(Keys.H) && KeyDownH)
         {
-            fire.posithion.X = 55;
-            fire.posithion.Y =  0;
+            Console.WriteLine("UnPress H");
             skills.Press(fire);
             KeyDownH = false;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.J)&& !KeyDownJ) 
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.J)) 
         {
-            Console.WriteLine("Press H");
             KeyDownJ = true;
         }
         if((Keyboard.GetState().IsKeyUp(Keys.J)) && KeyDownJ)
         {
-            fire.posithion.X = 55;
-            fire.posithion.Y =  0;
+            Console.WriteLine("UnPress J");
             skills.Press(water);
             KeyDownJ = false;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
         {
-            Console.WriteLine("Press J");
-
             KeyDownK = true;
         }
         if((Keyboard.GetState().IsKeyUp(Keys.K)) && KeyDownK)
         {
-            water.posithion.X = - 75;
-            water.posithion.Y =  0;
-            skills.Press(water);
+            Console.WriteLine("Press K");
+            skills.Press(earth);
             KeyDownK = false;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
+        if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.U))  
         {
-            Console.WriteLine("Press K");
-            earth.posithion.X = 0;
-            earth.posithion.Y = 35;
-            skills.Press(earth);
+            KeyDownU = true;
         }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.L))
+        if(Keyboard.GetState().IsKeyUp(Keys.U) && KeyDownU)
         {
-            Console.WriteLine("Press L");
+            Console.WriteLine("Unpress U");
             skills.Press(air);
+            KeyDownU = false;
+        }        
+        if(Keyboard.GetState().IsKeyDown(Keys.E))
+        {
+            KeyDownE = true;
         }
+
+        if(Keyboard.GetState().IsKeyUp(Keys.E) && KeyDownE)
+        {
+            skills.playerPosithion.X = position.X;
+            skills.playerPosithion.Y = position.Y;
+            skills.SendSkill();
+            
+            KeyDownE = false;
+        }
+        skills.playerPosithion.X = position.X;
+        skills.playerPosithion.Y = position.Y;
     }
+
 }
 
 

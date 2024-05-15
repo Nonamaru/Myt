@@ -1,16 +1,10 @@
 
-<<<<<<< Updated upstream
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-=======
-using System.Numerics;
-
->>>>>>> Stashed changes
 namespace MyGame
 {
     class AnimationManager
     {
-<<<<<<< Updated upstream
 
         private readonly int intScale = 30;
         int numColumns;
@@ -79,13 +73,6 @@ namespace MyGame
                 (int)size.X,
                 (int)size.Y
             );
-=======
-        int numFrames;
-        Vector2 size; 
-        public AnimationManager(int numFrames , Vector2 size)
-        {
-
->>>>>>> Stashed changes
         }
     }
 

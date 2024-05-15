@@ -52,14 +52,18 @@ public class Game1 : Game
         }
 
         player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
+        player.LoadContent(Content.Load<Texture2D>("fireBall1"), Content.Load<Texture2D>("eathTower"),Content.Load<Texture2D>("fullFire") ,Content.Load<Texture2D>("waterBall") );
         player.setStayAnime(Content.Load<Texture2D>("PlayerOnt"));
         player.setWalkAnime(Content.Load<Texture2D>("walkRight"), Content.Load<Texture2D>("walkLeft"));
         player.EarthInit(Content.Load<Texture2D>("earth"));
         player.AirInit(Content.Load<Texture2D>("air"));
         player.WaterInit(Content.Load<Texture2D>("water"));
         player.FireInit(Content.Load<Texture2D>("fire"));
+        
+
         //animate.Update();
         //sprites.Add(player);
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -74,7 +78,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime) 
     { 
-        GraphicsDevice.Clear(Color.CornflowerBlue); 
+        GraphicsDevice.Clear(Color.White); 
  
         _spriteBatch.Begin(); 
         foreach(var sprite in sprites)
