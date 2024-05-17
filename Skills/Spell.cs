@@ -32,6 +32,7 @@ namespace MyGame
         private int counter;
         private int activeFrame;
         
+        private int playerState ;
         public bool goToPlayer = false;
 
         public Spell(Texture2D texture , Vector2 position ,bool goToPlayer, int speed , int index , int timerAlive)
@@ -57,7 +58,15 @@ namespace MyGame
         {
             if(!this.goToPlayer)
             {
-                position.X += speed;
+                if(playerState != 2)
+                {
+                    position.X += speed;
+                } 
+                else
+                {
+                    position.X -= speed;
+
+                }
             }
             else
             {

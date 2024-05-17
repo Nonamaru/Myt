@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x9D9xfopXh/XnZtPmm4hSfF443uz7tMXx8xIDvYuXdZKcyvk/lpJsSUq/3SwWeJ/bPOlgx0o0kUj9SiKRrHf/g==",
+  "dgSpecHash": "tFimdtFwmBT6mZN/ZGEAm8u5XT7ZJ+ra+BSpo7I+QvunZmmbP1UT6N64J0xzBaO75Lx3QrWhWzeUXPyh6t8GDg==",
   "success": true,
-  "projectFilePath": "D:\\MyGames\\MyTFelix\\backup\\Myt(12.05.2024)\\Myt\\MyGame.csproj",
+  "projectFilePath": "D:\\MyGames\\MyTFelix\\Myt\\MyGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",

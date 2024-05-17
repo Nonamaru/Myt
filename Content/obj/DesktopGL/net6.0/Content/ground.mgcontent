@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/ground.png</SourceFile>
+  <SourceFile>D:/MyGames/MyTFelix/Myt/Content/ground.png</SourceFile>
   <SourceTime>2024-05-10T21:41:42.6008191+05:00</SourceTime>
-  <DestFile>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/bin/DesktopGL/Content/ground.xnb</DestFile>
-  <DestTime>2024-05-14T22:53:21.7411048+05:00</DestTime>
+  <DestFile>D:/MyGames/MyTFelix/Myt/Content/bin/DesktopGL/Content/ground.xnb</DestFile>
+  <DestTime>2024-05-17T21:14:02.5931655+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

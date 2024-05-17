@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MyGames\\MyTFelix\\backup\\Myt(12.05.2024)\\Myt\\MyGame.csproj": {}
+    "D:\\MyGames\\MyTFelix\\Myt\\MyGame.csproj": {}
   },
   "projects": {
-    "D:\\MyGames\\MyTFelix\\backup\\Myt(12.05.2024)\\Myt\\MyGame.csproj": {
+    "D:\\MyGames\\MyTFelix\\Myt\\MyGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MyGames\\MyTFelix\\backup\\Myt(12.05.2024)\\Myt\\MyGame.csproj",
+        "projectUniqueName": "D:\\MyGames\\MyTFelix\\Myt\\MyGame.csproj",
         "projectName": "MyGame",
-        "projectPath": "D:\\MyGames\\MyTFelix\\backup\\Myt(12.05.2024)\\Myt\\MyGame.csproj",
+        "projectPath": "D:\\MyGames\\MyTFelix\\Myt\\MyGame.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\MyGames\\MyTFelix\\backup\\Myt(12.05.2024)\\Myt\\obj\\",
+        "outputPath": "D:\\MyGames\\MyTFelix\\Myt\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

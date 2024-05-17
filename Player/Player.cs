@@ -68,6 +68,7 @@ class Player : Sprite
             }
             break;
         };
+        
         skills.Draw(spriteBatch, position);
     }  
     public override void Update(GameTime gameTime )
@@ -157,6 +158,7 @@ class Player : Sprite
         }
 
         skills.Update();
+        skills.playerState = playerState;
     }
 
     private void CheckDown()

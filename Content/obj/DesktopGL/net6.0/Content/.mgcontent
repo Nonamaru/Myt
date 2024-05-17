@@ -4,20 +4,20 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/ball.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/ground.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/PlayerOnt.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/Stay.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/walkRight.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/walkLeft.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/water.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/fire.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/air.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/earth.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/fireBall1.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/eathTower.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/waterBall.png</File>
-    <File>D:/MyGames/MyTFelix/backup/Myt(12.05.2024)/Myt/Content/fullFire.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/ball.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/ground.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/PlayerOnt.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/Stay.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/walkRight.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/walkLeft.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/water.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/fire.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/air.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/earth.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/fireBall1.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/eathTower.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/waterBall.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/fullFire.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
