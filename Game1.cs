@@ -51,7 +51,8 @@ public class Game1 : Game
             sprites.Add(new Sprite(ground_texture , new Vector2(i , 200)));
         }
 
-        player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
+        //player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
+        player = new Player(Content.Load<Texture2D>("Player") ,Vector2.Zero , sprites);     // Передавать sprites сюда не правильно
         player.LoadContent(Content.Load<Texture2D>("fireBall1"), Content.Load<Texture2D>("eathTower"),Content.Load<Texture2D>("fullFire") ,Content.Load<Texture2D>("waterBall") );
         player.setStayAnime(Content.Load<Texture2D>("PlayerOnt"));
         player.setWalkAnime(Content.Load<Texture2D>("walkRight"), Content.Load<Texture2D>("walkLeft"));

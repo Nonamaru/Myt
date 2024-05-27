@@ -19,7 +19,6 @@ namespace MyGame
     class Spell
     {
         public int speed = 1;
-        
 
         public Texture2D texture;
         public Vector2 position;
@@ -32,10 +31,10 @@ namespace MyGame
         private int counter;
         private int activeFrame;
         
-        private int playerState ;
+        public bool playerState = true ;
         public bool goToPlayer = false;
 
-        public Spell(Texture2D texture , Vector2 position ,bool goToPlayer, int speed , int index , int timerAlive)
+        public Spell(Texture2D texture , Vector2 position ,bool goToPlayer, int speed , int index , int timerAlive )
         {
             this.texture  = texture;
             this.position = position;
@@ -43,6 +42,18 @@ namespace MyGame
             this.index = index;
             this.timerAlive = timerAlive;
             this.goToPlayer = goToPlayer;
+       
+        }
+        public Spell(Texture2D texture , Vector2 position ,bool goToPlayer, int speed , int index , int timerAlive , bool playerState)
+        {
+            this.texture  = texture;
+            this.position = position;
+            this.speed = speed;
+            this.index = index;
+            this.timerAlive = timerAlive;
+            this.goToPlayer = goToPlayer;
+            this.playerState = playerState;
+       
         }
 
         public void SpellAnimate(){
@@ -58,14 +69,13 @@ namespace MyGame
         {
             if(!this.goToPlayer)
             {
-                if(playerState != 2)
+                if(!this.playerState)
                 {
-                    position.X += speed;
+                    position.X -= speed;
                 } 
                 else
                 {
-                    position.X -= speed;
-
+                    position.X += speed;
                 }
             }
             else
@@ -73,12 +83,11 @@ namespace MyGame
                 position.X = playerPosithion.X + 15;
                 position.Y = playerPosithion.Y - 5;
             } 
-
         }
 
         public bool CheckRemove()
         {
-            if(timerExist      > timerAlive){   timerExist = 0 ; return true;}
+            if(timerExist > timerAlive){ timerExist = 0 ; return true;}
             timerExist++;
             return false;
         }

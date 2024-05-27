@@ -1,4 +1,5 @@
 
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace MyGame
@@ -56,14 +57,14 @@ namespace MyGame
             if(colPos >= numColumns)
             {
                 colPos = 0;
-                rowPos++;
+              //  rowPos++;
             }
         }
         public void ResetAnimation()
         {
             activeFrame = 0;
             colPos = 0;
-            rowPos = 0; 
+            //rowPos = 0; 
         }
         public Rectangle getFrame()
         {
@@ -73,6 +74,12 @@ namespace MyGame
                 (int)size.X,
                 (int)size.Y
             );
+        }
+        
+        public void setRow(int row)
+        {
+            rowPos = row;
+
         }
     }
 

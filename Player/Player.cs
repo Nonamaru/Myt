@@ -14,7 +14,7 @@ namespace MyGame;
 
 class Player : Sprite
 {
-
+    AnimationManager playerAnime;
     AnimationManager stayAnime;
     AnimationManager walkLeftAnime;
     AnimationManager walkRightAnime;
@@ -27,70 +27,68 @@ class Player : Sprite
     MagickCicle fire;
     public bool onTheGround = false;
 
-    public SpriteEffects flip = SpriteEffects.FlipHorizontally;
 
     public int speed = 2;
     private static readonly float SCALE = 1f; 
     
-    private int playerState = 0;
     private bool doJump = false;
     private int jumpHeigh = 100;
     private float positionYstate = 0;
 
     List<Sprite> collisionGroup;
-    int activeFrame = 0;
-    int counter = 0;
-
     public  Player(Texture2D texture, Vector2 position, List<Sprite> collisionGroup ) : base(texture , position )
     {
         this.collisionGroup = collisionGroup;
+
+        playerAnime = new AnimationManager(texture , 6 , 0 , new Vector2(50 , 50));
     }
 
-
+    
     public virtual void Draw(SpriteBatch spriteBatch , bool flip)
     {
 
-        switch (playerState)
-        {
-            case 1:         // Стоит 
-            {
-                spriteBatch.Draw(stayAnime.texture,new Rectangle((int)position.X, (int)position.Y, 80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
-            }
-            break;
-            case 2:         // Идет вправо
-            {
-                spriteBatch.Draw(walkRightAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
-            }
-            break;
-            case 3:         // Идет влево
-            {
-                spriteBatch.Draw(walkLeftAnime.texture,new Rectangle((int)position.X, (int)position.Y,  80, 90), new Rectangle(activeFrame *48 , 0, 48, 48), Color.White);
-            }
-            break;
-        };
-        
+        spriteBatch.Draw(playerAnime.texture, new Rectangle((int)position.X, (int)position.Y, 80, 90), playerAnime.getFrame(), Color.White);
+
         skills.Draw(spriteBatch, position);
     }  
+    private bool lastState  = true; // true = значит персонаж смотрит вправо
     public override void Update(GameTime gameTime )
     {
         float changeX = 0;
         float changeY = 6;
-
+        if(!lastState)                  
+        {
+            playerAnime.setRow(1); // переход на анимацию стойки
+        } 
+        else
+        {
+            playerAnime.setRow(0); // переход на анимацию стойки
+        }
+       
+       
         Vector2 leftthumbstick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
-        playerState = 1;
         if(GamePad.GetState(PlayerIndex.One).IsConnected)   changeX = leftthumbstick.X * speed;;
 
         if (GamePad.GetState(PlayerIndex.One).DPad.Right  == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.D))
         {
             changeX += 2 * speed;
-            playerState = 2;
+            lastState = true;
+            
+            playerAnime.setRow(3); // переход на анимацию вправо
         }
         if (GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
         {
             changeX -= 2 * speed;
-            playerState = 3;
-  
+            lastState = false;
+
+            playerAnime.setRow(2); // переход на анимацию влево
         }
+        if (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.S))
+        {
+            playerAnime.setRow(5); // переход на анимацию вниз
+        }
+
+
         if(!doJump)
         {
             if ( Keyboard.GetState().IsKeyDown(Keys.W))
@@ -101,7 +99,6 @@ class Player : Sprite
             {
                 positionYstate = position.Y;
                 this.onTheGround = false;
-                //changeY -= 50;
                 this.doJump = true;
             }
             if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.S))
@@ -137,28 +134,11 @@ class Player : Sprite
         position.Y += changeY;
         position.X += changeX;
 
-        if(changeX > 0)
-        {
-            this.flip = SpriteEffects.None;
-        }
-        else
-        {
-            this.flip = SpriteEffects.FlipHorizontally; 
-        }
         this.CheckDown();
         stayAnime.Update();
         base.Update(gameTime);
-
-        if(++counter > 7){          // Костыль для анимации 
-            counter = 0;
-            activeFrame++;
-            if(activeFrame >= 6){
-                activeFrame = 0;
-            }
-        }
-
+        playerAnime.Update();
         skills.Update();
-        skills.playerState = playerState;
     }
 
     private void CheckDown()
@@ -220,6 +200,7 @@ class Player : Sprite
             skills.Press(fire);
             KeyDownH = false;
         }
+
         if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.J)) 
         {
             KeyDownJ = true;
@@ -230,6 +211,7 @@ class Player : Sprite
             skills.Press(water);
             KeyDownJ = false;
         }
+
         if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.K))
         {
             KeyDownK = true;
@@ -240,6 +222,7 @@ class Player : Sprite
             skills.Press(earth);
             KeyDownK = false;
         }
+
         if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.U))  
         {
             KeyDownU = true;
@@ -249,24 +232,24 @@ class Player : Sprite
             Console.WriteLine("Unpress U");
             skills.Press(air);
             KeyDownU = false;
-        }        
+        }
+
         if(Keyboard.GetState().IsKeyDown(Keys.E))
         {
             KeyDownE = true;
         }
-
         if(Keyboard.GetState().IsKeyUp(Keys.E) && KeyDownE)
         {
-            skills.playerPosithion.X = position.X;
-            skills.playerPosithion.Y = position.Y;
             skills.SendSkill();
-            
             KeyDownE = false;
         }
+        
         skills.playerPosithion.X = position.X;
         skills.playerPosithion.Y = position.Y;
+        skills.playerPosithion.X = position.X;
+        skills.playerPosithion.Y = position.Y;
+        skills.playerState       = lastState;
     }
-
 }
 
 

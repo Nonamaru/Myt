@@ -116,3 +116,4 @@ D:\MyGames\MyTFelix\backup\Myt(12.05.2024)\Myt\bin\Debug\net6.0\Content\FullFire
 D:\MyGames\MyTFelix\backup\Myt(12.05.2024)\Myt\bin\Debug\net6.0\Content\waterBall.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\FullFire.xnb
 D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\waterBall.xnb
+D:\MyGames\MyTFelix\Myt\bin\Debug\net6.0\Content\Player.xnb

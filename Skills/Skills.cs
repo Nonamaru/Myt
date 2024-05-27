@@ -32,7 +32,7 @@ namespace MyGame
         private String BuffString = "";
 
         public Vector2 playerPosithion;
-        public int playerState; 
+        public bool playerState; 
         public Skills()    
         {
             magickCicles = new List<MagickCicle>();
@@ -155,10 +155,18 @@ namespace MyGame
             {
               if(spell.index == index)
               {
+                
                 spell.position.Y       = playerPosithion.Y;
-                spell.position.X       = playerPosithion.X + 60;
+                if(playerState)
+                {
+                    spell.position.X       = playerPosithion.X + 60;
+                }
+                else
+                {
+                    spell.position.X       = playerPosithion.X - 60;
+                }
                 spell.playerState      = playerState;
-                activeSpells.Add(new Spell(spell.texture , spell.position , spell.goToPlayer , spell.speed , spell.index , spell.timerAlive));
+                activeSpells.Add(new Spell(spell.texture , spell.position , spell.goToPlayer , spell.speed , spell.index , spell.timerAlive , spell.playerState ));
               }
             }
         } 

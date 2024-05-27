@@ -18,8 +18,10 @@
     <File>D:/MyGames/MyTFelix/Myt/Content/eathTower.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/waterBall.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/fullFire.png</File>
+    <File>D:/MyGames/MyTFelix/Myt/Content/Player.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
