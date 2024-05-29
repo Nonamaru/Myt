@@ -30,6 +30,8 @@ namespace MyGame
 
         private int counter;
         private int activeFrame;
+
+        public bool flip = false;
         
         public bool playerState = true ;
         public bool goToPlayer = false;
@@ -53,6 +55,19 @@ namespace MyGame
             this.timerAlive = timerAlive;
             this.goToPlayer = goToPlayer;
             this.playerState = playerState;
+       
+        }
+
+        public Spell(Texture2D texture , Vector2 position ,bool goToPlayer, int speed , int index , int timerAlive , bool playerState , bool flip)
+        {
+            this.texture  = texture;
+            this.position = position;
+            this.speed = speed;
+            this.index = index;
+            this.timerAlive = timerAlive;
+            this.goToPlayer = goToPlayer;
+            this.playerState = playerState;
+            this.flip = flip;
        
         }
 

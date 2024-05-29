@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>D:/MyGames/MyTFelix/Myt/Content/back.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/ball.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/ground.png</File>
     <File>D:/MyGames/MyTFelix/Myt/Content/PlayerOnt.png</File>
@@ -21,6 +22,7 @@
     <File>D:/MyGames/MyTFelix/Myt/Content/Player.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

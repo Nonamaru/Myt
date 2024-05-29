@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.Mime;
 using System.Runtime.ExceptionServices;
 using System.Runtime.Serialization.Formatters;
+using System.Threading.Tasks.Dataflow;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,7 +19,8 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     Player player;
     List<Sprite> sprites;
-
+    
+    Texture2D back;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -41,14 +44,14 @@ public class Game1 : Game
         sprites = new();
         Texture2D ground_texture = Content.Load<Texture2D>("ground"); 
 
-        for(int i = 0 ; i <= 800 ; i += 40)
+        for(int i = 0 ; i <= 1000 ; i += 40)
         {
-            sprites.Add(new Sprite(ground_texture , new Vector2(i , 400) ));
+            sprites.Add(new Sprite(ground_texture , new Vector2(i , 718) ));
         }
         
         for(int i = 200 ; i <= 280 ; i += 40)
         {
-            sprites.Add(new Sprite(ground_texture , new Vector2(i , 200)));
+            sprites.Add(new Sprite(ground_texture , new Vector2(i , 550)));
         }
 
         //player = new Player(Content.Load<Texture2D>("Stay") ,Vector2.Zero , sprites);
@@ -60,6 +63,9 @@ public class Game1 : Game
         player.AirInit(Content.Load<Texture2D>("air"));
         player.WaterInit(Content.Load<Texture2D>("water"));
         player.FireInit(Content.Load<Texture2D>("fire"));
+
+        back = Content.Load<Texture2D>("back");
+
         
 
         //animate.Update();
@@ -82,10 +88,15 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.White); 
  
         _spriteBatch.Begin(); 
+        _spriteBatch.Draw(back , new Rectangle(0 , 0 ,1090 , 728), Color.White);
         foreach(var sprite in sprites)
         {   
             if(sprite != player)    sprite.Draw(_spriteBatch);
         }
+        player.Draw(_spriteBatch , true); 
+
+
+        
         player.Draw(_spriteBatch , true); 
 
         _spriteBatch.End(); 

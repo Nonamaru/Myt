@@ -44,7 +44,7 @@ namespace MyGame
             spells.Add(new Spell(texture,           new Vector2(100 , 200) , false ,12 , 205 , 100));
             spells.Add(new Spell(textureEarth,      new Vector2(100 , 200) , false ,0  , 207 , 160));
             spells.Add(new Spell(textureFire,       new Vector2(playerPosithion.X , playerPosithion.Y) , true  ,0  , 210 , 160));
-            spells.Add(new Spell(textureWaterBall , new Vector2(100 , 200) , false ,12  , 261 , 160));
+            spells.Add(new Spell(textureWaterBall , new Vector2(0 , 160) , false ,12  , 261 , 160));
 
             activeSpells = new List<Spell>();
             nonActiveSpells = new List<Spell>();
@@ -160,10 +160,13 @@ namespace MyGame
                 if(playerState)
                 {
                     spell.position.X       = playerPosithion.X + 60;
+                    spell.flip             = true;
                 }
                 else
                 {
                     spell.position.X       = playerPosithion.X - 60;
+                    spell.flip             = false;
+
                 }
                 spell.playerState      = playerState;
                 activeSpells.Add(new Spell(spell.texture , spell.position , spell.goToPlayer , spell.speed , spell.index , spell.timerAlive , spell.playerState ));
